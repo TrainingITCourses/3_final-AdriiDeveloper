@@ -1,0 +1,7 @@
+<h3 *ngIf="filteredLaunches?.length > 0">Lanzamientos encontrados: {{ filteredLaunches.length }} </h3>
+
+<button (click)="sort = !sort; sortLaunches()">Ordenar por fecha: {{ sort ? 'asc' : 'desc' }}</button>
+
+<p *ngFor="let launches of filteredLaunches">
+  <a [routerLink]="['/launch', launches.id]">{{ launches?.name }} ({{ launches?.windowstart }})</a>
+</p>

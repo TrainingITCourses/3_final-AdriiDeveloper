@@ -1,8 +1,20 @@
-<h1>Angular Speed: aplicaciones de alto rendimiento</h1>
+<header>
+    <ng-container *ngIf="(stateUrl$ | async)?.includes('home')">
+      <h1> Listado de estados: </h1>
+    </ng-container>
 
-<router-outlet></router-outlet>
+    <ng-container *ngIf="(stateUrl$ | async)?.includes('status')">
+      <h1> Estado {{ selectedLaunchStatusName$ | async }}: </h1>
+    </ng-container>
 
-<footer>
-  <a href="https://trainingit.es/">Training IT</a>
-  <small>A course By <a href="https://twitter.com/albertobasalo">Alberto Basalo</a></small>
-</footer>
+    <ng-container *ngIf="(stateUrl$ | async)?.includes('launch')">
+      <h1> Detalle de el lanzamiento {{ selectedLaunchName$ | async }}: </h1>
+    </ng-container>
+
+    <hr/><i>Versión: {{ version }}</i> &nbsp;&nbsp;<button><a [routerLink]="['/home']">Volver a inicio</a></button><hr/>
+</header>
+
+<ng-container *ngIf="loading">Cargando un módulo...</ng-container>
+<ng-container *ngIf="!loading">
+  <router-outlet></router-outlet>
+</ng-container>
